@@ -1,0 +1,39 @@
+name: 'Slack Deployment'
+description: 'Sends a Slack Deployment Message'
+inputs:
+  channel_id:
+    description: 'The Slack channel id'
+    required: true
+  url:
+    description: 'The url where the package is deployed'
+    required: true
+  package:
+    description: 'The package name'
+    required: true
+  environment:
+    description: 'The deployment environment'
+    required: true
+  version:
+    description: 'The deployed package public version'
+    required: true
+  ref:
+    description: 'The deployment reference (a branch or a tag)'
+    required: true
+  owner:
+    description: 'The author of the deployment change'
+    required: true
+  repo:
+    description: 'The deployed package repository'
+    required: true
+  sha:
+    description: 'The deployment sha'
+    required: true
+  status_url:
+    description: 'The url that shows the application status'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - id: slack-deployment
+      run: ${{ github.action_path }}/send-message.sh ${{ inputs.channel_id }} ${{ inputs.url }} ${{ inputs.package }} ${{ inputs.environment }} ${{ inputs.version }} ${{ inputs.ref }} ${{ inputs.owner }} ${{ inputs.repo }} ${{ inputs.sha }} ${{ toJSON(inputs.status_url) }}
+      shell: bash
