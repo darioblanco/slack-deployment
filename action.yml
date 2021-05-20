@@ -31,9 +31,12 @@ inputs:
   status_url:
     description: 'The url that shows the application status'
     required: true
+  deployment_name:
+    description: 'The deployment name as it is shown in the Github page'
+    required: true
 runs:
   using: 'composite'
   steps:
     - id: slack-deployment
-      run: ${{ github.action_path }}/send-message.sh ${{ inputs.channel_id }} ${{ inputs.url }} ${{ inputs.package }} ${{ inputs.environment }} ${{ inputs.version }} ${{ inputs.ref }} ${{ inputs.owner }} ${{ inputs.repo }} ${{ inputs.sha }} ${{ toJSON(inputs.status_url) }}
+      run: ${{ github.action_path }}/send-message.sh ${{ inputs.channel_id }} ${{ inputs.url }} ${{ inputs.package }} ${{ inputs.environment }} ${{ inputs.version }} ${{ inputs.ref }} ${{ inputs.owner }} ${{ inputs.repo }} ${{ inputs.sha }} ${{ toJSON(inputs.status_url) }} ${{ inputs.deployment_name }}
       shell: bash
