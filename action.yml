@@ -41,5 +41,5 @@ runs:
   using: 'composite'
   steps:
     - id: slack-deployment
-      run: ${{ github.action_path }}/send-message.sh ${{ inputs.channel_id }} ${{ inputs.url }} ${{ inputs.package }} ${{ inputs.environment }} ${{ inputs.version }} ${{ inputs.ref }} ${{ inputs.owner }} ${{ inputs.repo }} ${{ inputs.sha }} ${{ toJSON(inputs.status_url) }} ${{ inputs.deployment_name }} ${{ inputs.deployment_description }}
+      run: ${{ github.action_path }}/send-message.sh ${{ inputs.channel_id }} ${{ inputs.url }} ${{ inputs.package }} ${{ inputs.environment }} ${{ inputs.version }} ${{ inputs.ref }} ${{ inputs.owner }} ${{ inputs.repo }} ${{ inputs.sha }} ${{ toJSON(inputs.status_url) }} ${{ inputs.deployment_name }} ${{ toJSON(inputs.deployment_description) }}
       shell: bash
