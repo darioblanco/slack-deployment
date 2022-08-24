@@ -24,7 +24,7 @@ deployment_description=${12}
 
 # Payload blocks generated in https://app.slack.com/block-kit-builder/
 curl -X POST \
-     -H "Content-type: application/json" \
+     -H "Content-type: application/json; charset=utf-8" \
      -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
      -d "{\"channel\":\"${channel_id}\",\"blocks\":[{\"type\": \"section\",\"text\": {\"type\": \"mrkdwn\",\"text\": \"*<${url}|${package}> deployment* :rocket: <https://github.com/${repo}/commit/${sha}|${sha}>\n${deployment_description}\"}},{\"type\": \"section\",\"fields\": [{\"type\": \"mrkdwn\",\"text\": \":sunrise: *Environment:* ${environment}\"},{\"type\": \"mrkdwn\",\"text\": \":1234: *Version:* ${version}\"},{\"type\": \"mrkdwn\",\"text\": \":label: *Ref:* ${ref}\"},{\"type\": \"mrkdwn\",\"text\": \":ninja: *Owner:* ${owner}\"},{\"type\": \"mrkdwn\",\"text\": \"<https:\/\/github.com\/${repo}/deployments\/activity_log?environment=${deployment_name}|Deployment Log>\"},{\"type\": \"mrkdwn\",\"text\": \"<https:\/\/github.com\/${repo}\/actions\/workflows\/deploy.yaml|CI Log>\"},{\"type\": \"mrkdwn\",\"text\": \"<${status_url}|Application Status>\"},{\"type\": \"mrkdwn\",\"text\": \"<https:\/\/github.com\/${repo}|${repo}>\"}],\"accessory\": {\"type\": \"image\",\"image_url\": \"https://github.com/${owner}.png\",\"alt_text\": \"Owner\"}},{\"type\":\"divider\"}]}" \
      https://slack.com/api/chat.postMessage
