@@ -27,7 +27,7 @@ description="${deployment_description%$'\n'*}"
 json_fmt=$(jq -n \
   --arg channelId "${channel_id}" \
   --arg title "${title}" \
-  --arg description "$(sed -e 's/^"//' -e 's/"$//' -e 's/\\n/\n/g'<<<"$description")" \
+  --arg description "$(sed -e 's/^"//' -e 's/"$//' -e 's/\\n/\n/g' -e 's/\\"/\"/g'<<<"$description")" \
   --arg envField ":sunrise: *Environment:* <https://github.com/${repo}/deployments/activity_log?environment=${environment}|${environment}>" \
   --arg versionField ":1234: *Version:* <https://github.com/${repo}/tree/${version}|${version}>" \
   --arg refField ":1234: *Ref:* ${ref}" \
